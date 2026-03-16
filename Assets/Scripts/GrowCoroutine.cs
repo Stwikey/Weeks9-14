@@ -8,10 +8,10 @@ public class GrowCoroutine : MonoBehaviour
     public Transform thing;
     public AnimationCurve curve;
     public Button button;
+    public bool finished = false;
     void Start()
     {
         thing.localScale = Vector2.zero;
-        StartCoroutine(Grow());
 
     }
 
@@ -28,7 +28,7 @@ public class GrowCoroutine : MonoBehaviour
 
     public IEnumerator Grow()
     {
-        button.interactable = false;
+        finished = false;
         float t = 0;
         thing.localScale = Vector2.zero;
         while (t < 1)
@@ -37,7 +37,7 @@ public class GrowCoroutine : MonoBehaviour
             thing.localScale = Vector2.one * curve.Evaluate(t);
             yield return null;
         }
-        button.interactable = true;
+        finished = true;
 
     }
 }
