@@ -13,6 +13,7 @@ public class FishSpawner : MonoBehaviour
     public Vector2 fishLocation;
     int fishSide;
     int fishScale = -1;
+    float fishSpeed = -3;
     public Vector3 scale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +35,7 @@ public class FishSpawner : MonoBehaviour
         //getting the player size without changing it
         scale = new Vector3(player.transform.localScale.z, player.transform.localScale.z, player.transform.localScale.z);
         fishSide = Random.Range(0, 2);
+        fishSpeed = 3;
         if(fishSide == 0)
         {
             //pick a random location on the left
@@ -44,10 +46,13 @@ public class FishSpawner : MonoBehaviour
             //pick a random location on the right
             fishLocation = new Vector2(10f, Random.Range(-5, 5));
             scale.x = scale.x * -1;
+            fishSpeed *= -1;s
+           
 
         }
         GameObject spawnedFish = Instantiate(fish[0], fishLocation, Quaternion.identity);
         spawnedFish.transform.localScale = scale;
+        spawnedFish.GetComponent<FishMovement>().speed = fishSpeed;
     }
 
     public IEnumerator Spawn()
