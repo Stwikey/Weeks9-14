@@ -225,3 +225,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   position: {x: 0, y: 0}
   speed: 5
+  fish: {fileID: 3463612737024260919, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}

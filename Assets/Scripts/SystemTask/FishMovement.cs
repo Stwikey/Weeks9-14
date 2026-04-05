@@ -17,7 +17,7 @@ public class FishMovement : MonoBehaviour
         fishMovement = transform.position;
         fishMovement.x = transform.position.x + speed * Time.deltaTime;
         transform.position = fishMovement;
-         
+        
     }
 
     void checkBounds()
@@ -32,5 +32,6 @@ public class FishMovement : MonoBehaviour
         }
 
     }
+
 
 }

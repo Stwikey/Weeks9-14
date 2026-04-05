@@ -4984,7 +4984,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7395408653228422378, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
   m_PrefabInstance: {fileID: 2124270211}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4551947850984562688
+--- !u!1001 &6115870931679866854
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4992,6 +4992,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 44107844730408967, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2124270212}
     - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5048,6 +5052,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1908418475}
-  - {fileID: 4551947850984562688}
+  - {fileID: 6115870931679866854}
   - {fileID: 1449714655}
   - {fileID: 2124270211}
