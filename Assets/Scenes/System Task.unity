@@ -2863,9 +2863,10 @@ MonoBehaviour:
   fish:
   - {fileID: 3463612737024260919, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
   player: {fileID: 2124270212}
-  playerSize: 0
+  playerSize: {x: 0, y: 0, z: 0}
   fishSize: 0
   fishLocation: {x: 0, y: 0}
+  scale: {x: 0, y: 0, z: 0}
 --- !u!4 &1449714655
 Transform:
   m_ObjectHideFlags: 0
@@ -4918,6 +4919,18 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.23
       objectReference: {fileID: 0}
@@ -4956,6 +4969,10 @@ PrefabInstance:
     - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602425555030305064, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
