@@ -46,7 +46,7 @@ public class FishSpawner : MonoBehaviour
             //pick a random location on the right
             fishLocation = new Vector2(10f, Random.Range(-5, 5));
             scale.x = scale.x * -1;
-            fishSpeed *= -1;s
+            fishSpeed *= -1;
            
 
         }
