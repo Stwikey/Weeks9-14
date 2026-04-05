@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -19,14 +20,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         transform.position += (Vector3)position*speed*Time.deltaTime;
-        if (checkCollision(fish, gameObject))
-        {
-            Debug.Log("true");
-        }
-        else
-        {
-            Debug.Log("false");
-        }
+        
+        
 
     }
 
@@ -35,29 +30,9 @@ public class Player : MonoBehaviour
         position = context.ReadValue<Vector2>();
     }
 
-    public bool checkCollision(GameObject fish, GameObject player)
+    public void Eat(GameObject fishEat)
     {
-        Vector2 fishPos = fish.transform.position;
-        Vector2 playerPos = player.transform.position;
-
-        float fishLength = fish.transform.localScale.x;
-        float playerLength = player.transform.localScale.x;
-
-        float fishWidth = fish.transform.localScale.x / 2;
-        float playerWidth = player.transform.localScale.x / 2;
-
-        if (Mathf.Abs(fishPos.x - playerPos.x) <= fishLength + playerLength)
-        {
-            return true;
-        }
-        else if (Mathf.Abs(fishPos.y - playerPos.y) <= fishWidth + playerWidth)
-        {
-            return true;
-
-        }
-        else
-        {
-            return false;
-        }
     }
+
+
 }

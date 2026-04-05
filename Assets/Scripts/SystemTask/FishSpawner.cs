@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Events;
 
 
 
 public class FishSpawner : MonoBehaviour
 {
-    public List<GameObject> fish;
+    public List<GameObject> fishes;
+    public List<GameObject> fishType;
     public GameObject player;
     public Vector3 playerSize;
     public float fishSize;
@@ -15,6 +17,8 @@ public class FishSpawner : MonoBehaviour
     int fishScale = -1;
     float fishSpeed = -3;
     public Vector3 scale;
+    public UnityEvent<GameObject> OnEatFish;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +30,7 @@ public class FishSpawner : MonoBehaviour
     {
         //getting the current player size
         playerSize = player.transform.localScale;
+        checkAllFishes();
 
     }
 
@@ -50,9 +55,10 @@ public class FishSpawner : MonoBehaviour
            
 
         }
-        GameObject spawnedFish = Instantiate(fish[0], fishLocation, Quaternion.identity);
+        GameObject spawnedFish = Instantiate(fishType[0], fishLocation, Quaternion.identity);
         spawnedFish.transform.localScale = scale;
         spawnedFish.GetComponent<FishMovement>().speed = fishSpeed;
+        fishes.Add(spawnedFish);
     }
 
     public IEnumerator Spawn()
@@ -61,6 +67,58 @@ public class FishSpawner : MonoBehaviour
            spawnFish();
            yield return new WaitForSeconds(2);
 
+        }
+    }
+    
+    public void checkAllFishes()
+    {
+        for (int i = 0; i < fishes.Count; i++)
+        {
+            if (fishes[i] == null)
+            {
+                fishes.RemoveAt(i);
+                i--;
+            }
+
+        }
+
+        for (int i = 0; i < fishes.Count; i++)
+        {
+            
+            if (checkCollision(fishes[i], player))
+            {
+                OnEatFish.Invoke(fishes[i]);
+                Destroy(fishes[i]);
+                fishes.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+ 
+    bool checkCollision(GameObject fish, GameObject player)
+    {
+        Vector2 fishPos = fish.transform.position;
+        Vector2 playerPos = player.transform.position;
+
+        float fishLength = Mathf.Abs(fish.transform.localScale.x);
+        float playerLength = Mathf.Abs(player.transform.localScale.x); 
+
+        float fishWidth = Mathf.Abs(fish.transform.localScale.x / 2);
+        float playerWidth = Mathf.Abs(player.transform.localScale.x / 2);
+
+        //Debug.Log("x" + Mathf.Abs(fishPos.x - playerPos.x));
+        //sDebug.Log("y" + (Mathf.Abs(fishPos.y - playerPos.y)));
+
+
+        if (Mathf.Abs(fishPos.x - playerPos.x) <= (fishLength + playerLength)&& Mathf.Abs(fishPos.y - playerPos.y) <= (fishWidth + playerWidth))
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
         }
     }
 }

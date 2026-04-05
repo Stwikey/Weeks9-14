@@ -2860,13 +2860,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6ff08ed1f75814391fec6042d365de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishSpawner
-  fish:
+  fishes: []
+  fishType:
   - {fileID: 3463612737024260919, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
   player: {fileID: 2124270212}
   playerSize: {x: 0, y: 0, z: 0}
   fishSize: 0
   fishLocation: {x: 0, y: 0}
   scale: {x: 0, y: 0, z: 0}
+  OnEatFish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2124270213}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Eat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 44107844730408967, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
+        m_TargetAssemblyTypeName: FishMovement, Assembly-CSharp
+        m_MethodName: Eat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1449714655
 Transform:
   m_ObjectHideFlags: 0
@@ -4914,6 +4942,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 44107844730408967, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Eat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: FishMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7395408653228422378, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4984,67 +5036,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7395408653228422378, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
   m_PrefabInstance: {fileID: 2124270211}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6115870931679866854
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 44107844730408967, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 2124270212}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 914242392841958058, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463612737024260919, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
-      propertyPath: m_Name
-      value: Fish
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 84f8a6cc9a303d84e8dc0a4b937a7985, type: 3}
+--- !u!114 &2124270213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2083784872666372552, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+  m_PrefabInstance: {fileID: 2124270211}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124270212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e928cca0ec9a6984fbcdb119eec99c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5052,6 +5054,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1908418475}
-  - {fileID: 6115870931679866854}
   - {fileID: 1449714655}
   - {fileID: 2124270211}

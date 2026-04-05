@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class FishMovement : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class FishMovement : MonoBehaviour
         fishMovement = transform.position;
         fishMovement.x = transform.position.x + speed * Time.deltaTime;
         transform.position = fishMovement;
+        Debug.Log(transform.position);
         
     }
 
@@ -32,6 +35,7 @@ public class FishMovement : MonoBehaviour
         }
 
     }
+
 
 
 }
