@@ -17,7 +17,7 @@ public class FishSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnFish();
+        StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
@@ -50,8 +50,12 @@ public class FishSpawner : MonoBehaviour
         spawnedFish.transform.localScale = scale;
     }
 
-    /**public IEnumerator Spawn()
+    public IEnumerator Spawn()
     {
+        while (true){
+           spawnFish();
+           yield return new WaitForSeconds(2);
 
-    }**/
+        }
+    }
 }
