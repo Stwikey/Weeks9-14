@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class LocalMultiplayerController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class LocalMultiplayerController : MonoBehaviour
     public Vector2 movementInput;
     public PlayerInput playerInput;
     public float speed = 5;
+    public AnimationCurve curve;
+    float t = 0;
     void Start()
     {
 
@@ -17,6 +20,7 @@ public class LocalMultiplayerController : MonoBehaviour
     void Update()
     {
         transform.position += (Vector3)movementInput * speed * Time.deltaTime;
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -29,9 +33,22 @@ public class LocalMultiplayerController : MonoBehaviour
 
         if (context.performed)
         {
+            StartCoroutine(Squeeze());
             Debug.Log("Attack!" + playerInput.playerIndex);
             manager.PlayerAttacking(playerInput);
+
         }
 
+    }
+    public IEnumerator Squeeze()
+    {
+        while (t < 1)
+        {
+            transform.localScale = new Vector3(curve.Evaluate(t), curve.Evaluate(t), curve.Evaluate(t));
+            yield return null;
+            t += Time.deltaTime;
+
+        }
+        t = 0;
     }
 }
