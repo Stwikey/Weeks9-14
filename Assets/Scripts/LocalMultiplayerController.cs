@@ -12,9 +12,15 @@ public class LocalMultiplayerController : MonoBehaviour
     public AnimationCurve curve;
     float t = 0;
     public AudioSource SFX;
+    public TrailRenderer trail;
+    Coroutine dash;
+    Coroutine squeeze;
     void Start()
     {
-
+        squeeze = StartCoroutine(Squeeze());
+        dash = StartCoroutine(Dash());
+        StopCoroutine(dash);
+        StopCoroutine(squeeze);
     }
 
     // Update is called once per frame
@@ -35,12 +41,29 @@ public class LocalMultiplayerController : MonoBehaviour
         if (context.performed)
         {
             SFX.Play();
+            StopCoroutine(squeeze);
+ 
             StartCoroutine(Squeeze());
+
             Debug.Log("Attack!" + playerInput.playerIndex);
             manager.PlayerAttacking(playerInput);
 
         }
 
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("interact");
+            StopCoroutine(dash);
+
+            dash = StartCoroutine(Dash());
+           
+
+
+        }
     }
     public IEnumerator Squeeze()
     {
@@ -52,5 +75,14 @@ public class LocalMultiplayerController : MonoBehaviour
 
         }
         t = 0;
+    }
+
+    public IEnumerator Dash()
+    {
+        trail.emitting = true;
+        speed = 10;
+        yield return new WaitForSeconds(1);
+        trail.emitting = false;
+        speed = 5;
     }
 }
