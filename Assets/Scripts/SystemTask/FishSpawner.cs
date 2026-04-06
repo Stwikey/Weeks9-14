@@ -17,12 +17,15 @@ public class FishSpawner : MonoBehaviour
     int fishScale = -1;
     float fishSpeed = -3;
     public Vector3 scale;
-    public UnityEvent<GameObject> OnEatFish;
+    public UnityEvent<float> OnEatFish;
+    Coroutine spawner;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Spawn());
+        //starting the spawner coroutine
+        spawner = StartCoroutine(Spawn());
     }
 
     // Update is called once per frame
@@ -30,6 +33,8 @@ public class FishSpawner : MonoBehaviour
     {
         //getting the current player size
         playerSize = player.transform.localScale;
+
+        //checks for collision with all the fishes and the player
         checkAllFishes();
 
     }
@@ -55,7 +60,9 @@ public class FishSpawner : MonoBehaviour
            
 
         }
+        //spawning a fish
         GameObject spawnedFish = Instantiate(fishType[0], fishLocation, Quaternion.identity);
+        //changing the scale based on player scale
         spawnedFish.transform.localScale = scale;
         spawnedFish.GetComponent<FishMovement>().speed = fishSpeed;
         fishes.Add(spawnedFish);
@@ -64,14 +71,17 @@ public class FishSpawner : MonoBehaviour
     public IEnumerator Spawn()
     {
         while (true){
+            //spawns fish every 2 seconds
            spawnFish();
            yield return new WaitForSeconds(2);
 
         }
     }
     
+    //checks for collisions
     public void checkAllFishes()
     {
+        //checks if any of the indexes are null, then deletes them
         for (int i = 0; i < fishes.Count; i++)
         {
             if (fishes[i] == null)
@@ -82,12 +92,14 @@ public class FishSpawner : MonoBehaviour
 
         }
 
+        //checks if any of the fish are colliding with the player, the invokes a unity event
         for (int i = 0; i < fishes.Count; i++)
         {
             
             if (checkCollision(fishes[i], player))
             {
-                OnEatFish.Invoke(fishes[i]);
+                OnEatFish.Invoke(fishes[i].transform.localScale.x);
+                //destroys the eaten fish and removes it from the list
                 Destroy(fishes[i]);
                 fishes.RemoveAt(i);
                 i--;
@@ -95,7 +107,7 @@ public class FishSpawner : MonoBehaviour
         }
     }
 
- 
+    //checks collision with the player
     bool checkCollision(GameObject fish, GameObject player)
     {
         Vector2 fishPos = fish.transform.position;
@@ -110,8 +122,8 @@ public class FishSpawner : MonoBehaviour
         //Debug.Log("x" + Mathf.Abs(fishPos.x - playerPos.x));
         //sDebug.Log("y" + (Mathf.Abs(fishPos.y - playerPos.y)));
 
-
-        if (Mathf.Abs(fishPos.x - playerPos.x) <= (fishLength + playerLength)&& Mathf.Abs(fishPos.y - playerPos.y) <= (fishWidth + playerWidth))
+        //if the distance from the player to the fish is smaller than half of the sum of both their lengths/width combined then return true
+        if (Mathf.Abs(fishPos.x - playerPos.x) <= ((fishLength + playerLength)/2)&& Mathf.Abs((fishPos.y - playerPos.y)/2) <= (fishWidth + playerWidth))
         {
             return true;
         }
@@ -120,5 +132,11 @@ public class FishSpawner : MonoBehaviour
         {
             return false;
         }
+    }
+
+    //stops the spawner if the game is over
+    public void gameOver()
+    {
+        StopCoroutine(spawner);
     }
 }

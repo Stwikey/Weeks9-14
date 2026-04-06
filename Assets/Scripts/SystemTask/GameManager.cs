@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public AudioSource SFX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,10 +13,9 @@ public class AudioManager : MonoBehaviour
     {
         
     }
-
-    //plays a sound when the player collides with the fish
-    public void Eat()
+    //if the game is over, print that the player wins
+    public void gameOver()
     {
-        SFX.Play();
+        Debug.Log("You Win!");
     }
 }

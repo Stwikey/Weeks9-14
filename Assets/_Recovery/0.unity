@@ -5205,6 +5205,18 @@ PrefabInstance:
       propertyPath: OnEatFish.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2738261337901466339, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_Color.b
+      value: 0.92549026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738261337901466339, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_Color.g
+      value: 0.92549026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2738261337901466339, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
+      propertyPath: m_Color.r
+      value: 0.92549026
+      objectReference: {fileID: 0}
     - target: {fileID: 7395408653228422378, guid: 1786d9bae07c68f46af682580dcff704, type: 3}
       propertyPath: m_Name
       value: Player
