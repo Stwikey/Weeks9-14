@@ -11,6 +11,7 @@ public class LocalMultiplayerController : MonoBehaviour
     public float speed = 5;
     public AnimationCurve curve;
     float t = 0;
+    public AudioSource SFX;
     void Start()
     {
 
@@ -33,6 +34,7 @@ public class LocalMultiplayerController : MonoBehaviour
 
         if (context.performed)
         {
+            SFX.Play();
             StartCoroutine(Squeeze());
             Debug.Log("Attack!" + playerInput.playerIndex);
             manager.PlayerAttacking(playerInput);
